@@ -17,10 +17,13 @@
     "@gluestack-ui/divider": "latest",
     "@gluestack-ui/icon": "latest",
     "@gluestack-ui/input": "latest",
+    "@gluestack-ui/pressable": "latest",
     "@gluestack-ui/provider": "latest",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
+    "cuid": "^3.0.0",
     "expo": "~48.0.18",
+    "expo-sqlite": "~11.1.1",
     "expo-status-bar": "~1.4.4",
     "gluestack-ui": "^0.4.0",
     "lucide-react-native": "^0.241.0",
@@ -32,7 +35,7 @@
     "react-native-screens": "^3.20.0",
     "react-native-svg": "13.4.0",
     "tailwindcss": "^3.3.2",
-    "@gluestack-ui/pressable": "latest"
+    "@gluestack-ui/toast": "latest"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

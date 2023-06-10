@@ -7,4 +7,5 @@ export * from './Icons';
 export * from './Input';
 export * from './Pressable';
 export * from './Text';
+export * from './Toast';
 export * from './styled';

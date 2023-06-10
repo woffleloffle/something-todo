@@ -5,9 +5,11 @@ import { useNavigation } from "@react-navigation/native";
 
 import { Box, Divider, Heading, IconButton, Text } from "../../components";
 
-interface Props {}
+interface Props {
+  version: string;
+}
 
-const Settings: FC<Props> = () => {
+const Settings: FC<Props> = ({ version }) => {
   const navigation = useNavigation();
 
   return (
@@ -33,7 +35,7 @@ const Settings: FC<Props> = () => {
       <Box flex={1} backgroundColor="$backgroundLight100">
         <ScrollView>
           <Box p="$2">
-            <Text>Configure SQLite stuff here</Text>
+            <Text>Version: {version}</Text>
           </Box>
         </ScrollView>
       </Box>

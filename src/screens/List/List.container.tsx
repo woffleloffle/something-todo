@@ -1,13 +1,31 @@
 import { NativeStackScreenProps as NsSp } from "@react-navigation/native-stack";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 import Presentational from "./List";
 
+import { db_todo } from "../../sqlite/types";
+import { getAll as getAllToDos } from "../../sqlite/table/todo";
+
 import { MainStackParams } from "../../navigators/config";
-export type RouteProps = NsSp<MainStackParams, "ListScreen">;
+type RouteProps = NsSp<MainStackParams, "ListScreen">;
 
 const Container: FC<RouteProps> = () => {
-  return <Presentational />;
+  const [list, setList] = useState<db_todo[]>([]);
+  const [refetch, setRefetch] = useState(0);
+
+  useEffect(() => {
+    const getList = async () => {
+      const results = await getAllToDos();
+      console.log("setting list ->", { results });
+      setList(results);
+    };
+
+    getList();
+  }, [refetch]);
+
+  return (
+    <Presentational list={list} refetch={() => setRefetch((r) => r + 1)} />
+  );
 };
 
 export default Container;

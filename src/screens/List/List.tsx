@@ -1,21 +1,25 @@
 import { FC } from "react";
-import { CogIcon, PlusIcon } from "lucide-react-native";
+import { CogIcon } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView, SafeAreaView } from "react-native";
+
+import { db_todo } from "../../sqlite/types";
 
 import {
   Box,
   Text,
-  Input,
-  Button,
   Divider,
   Heading,
   IconButton,
+  FormAddItem,
 } from "../../components";
 
-interface Props {}
+interface Props {
+  list: db_todo[];
+  refetch: () => void;
+}
 
-const List: FC<Props> = () => {
+const List: FC<Props> = ({ list, refetch }) => {
   const navigation = useNavigation();
 
   return (
@@ -44,27 +48,20 @@ const List: FC<Props> = () => {
       <Box flex={1} backgroundColor="$backgroundLight50">
         <ScrollView>
           <Box p="$2">
-            <Text>Open up App.js to start working on your app!</Text>
+            {!list.length ? (
+              <Text>All clear</Text>
+            ) : (
+              list.map((todo) => {
+                return <Text key={todo.id}>{todo.task}</Text>;
+              })
+            )}
           </Box>
         </ScrollView>
       </Box>
 
       <Divider />
 
-      <SafeAreaView>
-        <Box p="$2" flexDirection="row">
-          <Input flex={1} mr="$2" backgroundColor="$white">
-            <Input.Input placeholder="Something TODO?" />
-          </Input>
-          <Button
-            onPress={() => {
-              console.log("stuff");
-            }}
-          >
-            <Button.Icon as={PlusIcon} />
-          </Button>
-        </Box>
-      </SafeAreaView>
+      <FormAddItem onAddItem={refetch} />
     </Box>
   );
 };
