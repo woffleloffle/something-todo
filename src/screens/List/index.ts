@@ -1,3 +1,3 @@
-import List from "./List.container";
+import Screen from "./List.container";
 
-export default List;
+export default Screen;

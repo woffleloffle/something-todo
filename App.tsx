@@ -1,15 +1,18 @@
 import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
 
 import { GluestackUIProvider } from "./src/components";
 import { config } from "./gluestack-ui.config";
 
-import List from "./src/screens/List";
+import MainStack from "./src/navigators/MainStack";
 
 export default function App() {
   return (
-    <GluestackUIProvider config={config.theme}>
-      <StatusBar style="auto" />
-      <List />
-    </GluestackUIProvider>
+    <NavigationContainer>
+      <GluestackUIProvider config={config.theme}>
+        <StatusBar style="auto" />
+        <MainStack />
+      </GluestackUIProvider>
+    </NavigationContainer>
   );
 }
