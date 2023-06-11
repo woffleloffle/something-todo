@@ -4,4 +4,4 @@
 pre-commit:
   commands:
     bump-patch-version:
-      run: yarn pre-commit
+      run: yarn vik patch && git add package.json app.json

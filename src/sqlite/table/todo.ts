@@ -74,6 +74,7 @@ export const getAllIncomplete = async () => {
       `
       SELECT * FROM todo
         WHERE completedAt is NULL
+          AND deletedAt is NULL
       `,
       []
     );
@@ -205,5 +206,38 @@ export const getStats = async () => {
     console.log(e);
   }
 
+  return false;
+};
+
+/**
+ * Delete a todo item
+ */
+export const softDelete = async (id: string) => {
+  const valid = cuid.isCuid(id);
+
+  if (!valid) {
+    console.error(`todo/softDelete()`, "Invalid CUID");
+    return false;
+  }
+
+  try {
+    const result = await transact(
+      `UPDATE todo
+        SET deletedAt = ?
+        WHERE id = ?`,
+      [Date.now(), id]
+    );
+
+    if (result.rowsAffected) {
+      return true;
+    }
+
+    //
+  } catch (e) {
+    console.error(`todo/softDelete() failed with an error`);
+    console.log(e);
+  }
+
+  console.error("todo/softDelete() failed to update");
   return false;
 };
