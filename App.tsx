@@ -32,7 +32,7 @@ const App: FC = () => {
   return (
     <NavigationContainer>
       <GluestackUIProvider config={config.theme}>
-        <StatusBar style="auto" />
+        <StatusBar style="dark" />
         {ready ? <MainStack /> : <Loading />}
       </GluestackUIProvider>
     </NavigationContainer>
