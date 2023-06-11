@@ -1,0 +1,7 @@
+# Refer to:
+# https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+
+pre-commit:
+  commands:
+    bump-patch-version:
+      run: yarn pre-commit
