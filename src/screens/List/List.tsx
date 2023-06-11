@@ -8,7 +8,6 @@ import {
   SafeAreaView,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  RefreshControl,
 } from "react-native";
 
 import { db_todo } from "../../sqlite/types";
@@ -55,6 +54,7 @@ const List: FC<Props> = ({
             <SafeAreaView>
               <Box
                 p="$2"
+                pt={Platform.OS === "android" ? "$8" : "$2"}
                 alignItems="center"
                 flexDirection="row"
                 justifyContent="space-between"

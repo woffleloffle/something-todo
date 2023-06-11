@@ -10,7 +10,10 @@ import SettingsScreen from "../screens/Settings";
 
 const Stack = createNativeStackNavigator<MainStackParams>();
 
-const options: NativeStackNavigationOptions = { headerShown: false };
+const options: NativeStackNavigationOptions = {
+  headerShown: false,
+  animation: "slide_from_right",
+};
 
 const MainStack = () => {
   return (

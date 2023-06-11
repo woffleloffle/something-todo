@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "something-todo",
+    "name": "TODO",
     "slug": "something-todo",
     "version": "1.0.1",
     "orientation": "portrait",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.wlabu.somethingtodo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "fb113be2-d452-4716-851c-2913e9316198"
+      }
     }
   }
 }

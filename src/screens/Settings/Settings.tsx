@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { SafeAreaView, ScrollView } from "react-native";
+import { Platform, SafeAreaView, ScrollView } from "react-native";
 import { ArrowLeft } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -17,11 +17,11 @@ const Settings: FC<Props> = ({ stats, version }) => {
   return (
     <Box flex={1} backgroundColor="$backgroundLight0">
       <SafeAreaView>
-        <Box p="$2">
+        <Box p="$2" pt={Platform.OS === "android" ? "$8" : "$2"}>
           <Heading color="$primary500" textAlign="center" fontWeight="$medium">
             Settings
           </Heading>
-          <Box p="$2" position="absolute">
+          <Box p="$2" position="absolute" bottom={0}>
             <IconButton
               icon={ArrowLeft}
               onPress={() => {

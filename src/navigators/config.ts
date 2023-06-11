@@ -1,5 +1,3 @@
-import { NavigationProp, useNavigation } from "@react-navigation/native";
-
 /**
  * Route definitions
  */
