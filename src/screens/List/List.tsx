@@ -76,7 +76,7 @@ const List: FC<Props> = ({
             <Box flex={1} backgroundColor="$backgroundLight50">
               <ScrollView>
                 {!list.length ? (
-                  <Text>All clear</Text>
+                  <Text p="$2">All clear</Text>
                 ) : (
                   list.map((todo) => {
                     return (
