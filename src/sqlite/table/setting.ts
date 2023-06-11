@@ -55,7 +55,6 @@ export const get = async (key: SettingKey) => {
 
     if (result.rows.length) {
       const { value } = result.rows.item(0);
-      console.log(`getSettingData('${setting}')`);
       return value as string;
     }
 

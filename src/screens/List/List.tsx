@@ -1,7 +1,14 @@
 import { FC } from "react";
 import { CogIcon } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
-import { ScrollView, SafeAreaView } from "react-native";
+import {
+  Platform,
+  Keyboard,
+  ScrollView,
+  SafeAreaView,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+} from "react-native";
 
 import { db_todo } from "../../sqlite/types";
 
@@ -24,48 +31,61 @@ const List: FC<Props> = ({ list, refetch }) => {
   const navigation = useNavigation();
 
   return (
-    <Box flex={1} backgroundColor="$backgroundLight0">
-      <SafeAreaView>
-        <Box
-          p="$2"
-          alignItems="center"
-          flexDirection="row"
-          justifyContent="space-between"
-        >
-          <Heading color="$primary500" fontWeight="$medium">
-            Something TODO
-          </Heading>
-          <IconButton
-            icon={CogIcon}
-            onPress={() => {
-              navigation.navigate("SettingsScreen");
-            }}
-          />
-        </Box>
-      </SafeAreaView>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Box flex={1} backgroundColor="$backgroundLight0">
+          <SafeAreaView>
+            <Box
+              p="$2"
+              alignItems="center"
+              flexDirection="row"
+              justifyContent="space-between"
+            >
+              <Heading color="$primary500" fontWeight="$medium">
+                Something TODO
+              </Heading>
+              <IconButton
+                icon={CogIcon}
+                onPress={() => {
+                  navigation.navigate("SettingsScreen");
+                }}
+              />
+            </Box>
+          </SafeAreaView>
 
-      <Divider />
+          <Divider />
 
-      <Box flex={1} backgroundColor="$backgroundLight50">
-        <ScrollView>
-          <Box p="$2">
-            {!list.length ? (
-              <Text>All clear</Text>
-            ) : (
-              list.map((todo) => {
-                return (
-                  <ToDoItem key={todo.id} todo={todo} onComplete={refetch} />
-                );
-              })
-            )}
+          <Box flex={1} backgroundColor="$backgroundLight50">
+            <ScrollView>
+              <Box p="$2">
+                {!list.length ? (
+                  <Text>All clear</Text>
+                ) : (
+                  list.map((todo) => {
+                    return (
+                      <ToDoItem
+                        todo={todo}
+                        key={todo.id}
+                        onComplete={refetch}
+                        onUnComplete={refetch}
+                      />
+                    );
+                  })
+                )}
+              </Box>
+            </ScrollView>
           </Box>
-        </ScrollView>
-      </Box>
 
-      <Divider />
-
-      <FormAddItem onAddItem={refetch} />
-    </Box>
+          <>
+            <Divider />
+            <FormAddItem onAddItem={refetch} />
+          </>
+        </Box>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 

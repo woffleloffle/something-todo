@@ -4,7 +4,7 @@ import { FC, useEffect, useState } from "react";
 import Presentational from "./List";
 
 import { db_todo } from "../../sqlite/types";
-import { getAll as getAllToDos } from "../../sqlite/table/todo";
+import { getAllIncomplete as getAllToDos } from "../../sqlite/table/todo";
 
 import { MainStackParams } from "../../navigators/config";
 type RouteProps = NsSp<MainStackParams, "ListScreen">;
