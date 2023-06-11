@@ -1,5 +1,5 @@
-import { NativeStackScreenProps as NsSp } from "@react-navigation/native-stack";
 import { FC, useEffect, useState } from "react";
+import { NativeStackScreenProps as NsSp } from "@react-navigation/native-stack";
 
 import Presentational from "./List";
 

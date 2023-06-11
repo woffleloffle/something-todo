@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import {
   Platform,
   Keyboard,
+  StatusBar,
   ScrollView,
   SafeAreaView,
   KeyboardAvoidingView,
@@ -51,10 +52,14 @@ const List: FC<Props> = ({
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <Box flex={1} backgroundColor="$backgroundLight0">
-            <SafeAreaView>
+            <SafeAreaView
+              style={{
+                paddingTop:
+                  Platform.OS === "android" ? StatusBar.currentHeight : 0,
+              }}
+            >
               <Box
                 p="$2"
-                pt={Platform.OS === "android" ? "$8" : "$2"}
                 alignItems="center"
                 flexDirection="row"
                 justifyContent="space-between"

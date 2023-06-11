@@ -1,5 +1,5 @@
-import { NativeStackScreenProps as NsSp } from "@react-navigation/native-stack";
 import { FC, useEffect, useState } from "react";
+import { NativeStackScreenProps as NsSp } from "@react-navigation/native-stack";
 
 import { Stats, allSettingKeys } from "../../sqlite/types";
 import { get as getSetting } from "../../sqlite/table/setting";
@@ -9,47 +9,29 @@ import { MainStackParams } from "../../navigators/config";
 type RouteProps = NsSp<MainStackParams, "SettingsScreen">;
 
 import Presentational from "./Settings";
-import { Text } from "../../components";
 
 const Container: FC<RouteProps> = () => {
-  const [version, setVersion] = useState("Loading...");
-  const [versionError, setVersionError] = useState(false);
+  const [version, setVersion] = useState<false | string>(false);
 
   useEffect(() => {
     const getVersion = async () => {
       const data = await getSetting(allSettingKeys.version);
-
-      if (data) {
-        setVersion(data);
-      } else {
-        console.log("something went wrong", { data });
-        setVersionError(true);
-      }
+      setVersion(data);
     };
 
     getVersion();
   }, []);
 
-  const [stats, setStats] = useState<Stats>();
-  const [statsError, setStatsError] = useState(false);
+  const [stats, setStats] = useState<false | Stats>(false);
 
   useEffect(() => {
     const getStats = async () => {
       const data = await getAllStats();
-
-      if (data) {
-        setStats(data);
-      } else {
-        console.log("something went wrong", { data });
-        setStatsError(true);
-      }
+      setStats(data);
     };
 
     getStats();
   }, []);
-
-  if (versionError) return <Text p="$12">oops (versionError)</Text>;
-  if (statsError) return <Text p="$12">oops (statsError)</Text>;
 
   return <Presentational version={version} stats={stats} />;
 };
