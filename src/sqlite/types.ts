@@ -20,3 +20,12 @@ export const allSettingKeys = {
 } as const;
 
 export type SettingKey = keyof typeof allSettingKeys;
+
+/**
+ * The stats we show on the settings screen
+ */
+export interface Stats {
+  countTotal: number;
+  countDeleted: number;
+  countCompleted: number;
+}

@@ -1,7 +1,7 @@
 import cuid from "cuid";
 
 import { transact } from "..";
-import { db_todo } from "../types";
+import { Stats, db_todo } from "../types";
 
 /**
  * Insert a TODO into the `todo` table
@@ -157,5 +157,53 @@ export const unComplete = async (id: string) => {
   }
 
   console.error("todo/unComplete() failed to update");
+  return false;
+};
+
+/**
+ * Get a list of statistics about the database
+ */
+export const getStats = async () => {
+  let stats: Stats | false = false;
+
+  try {
+    const result = await transact(
+      `
+      SELECT
+        COUNT(*) AS total,
+
+        COUNT(
+          CASE WHEN completedAt IS NOT NULL
+            THEN 1 ELSE NULL
+          END
+        ) AS completed,
+
+        COUNT(
+          CASE WHEN deletedAt IS NOT NULL
+            THEN 1 ELSE NULL
+          END
+        ) AS deleted
+
+      FROM todo
+      `,
+      []
+    );
+
+    if (result.rows.length) {
+      const counts = await result.rows.item(0);
+
+      stats = {
+        countTotal: counts.total as number,
+        countDeleted: counts.deleted as number,
+        countCompleted: counts.completed as number,
+      };
+
+      return stats;
+    }
+  } catch (e) {
+    console.error(`todo/getStats() failed with an error`);
+    console.log(e);
+  }
+
   return false;
 };
