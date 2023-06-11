@@ -2,8 +2,8 @@ export interface db_todo {
   id: string;
   task: string;
   createdAt: number;
-  deletedAt: number;
-  completedAt: number;
+  deletedAt?: number;
+  completedAt?: number;
 }
 
 export interface db_setting {

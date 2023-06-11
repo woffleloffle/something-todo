@@ -16,7 +16,6 @@ const Container: FC<RouteProps> = () => {
   useEffect(() => {
     const getList = async () => {
       const results = await getAllToDos();
-      console.log("setting list ->", { results });
       setList(results);
     };
 

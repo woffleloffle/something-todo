@@ -1,7 +1,7 @@
 import cuid from "cuid";
 
 import { transact } from "..";
-import { SettingKey, allSettingKeys, db_todo } from "../types";
+import { db_todo } from "../types";
 
 /**
  * Insert a TODO into the `todo` table

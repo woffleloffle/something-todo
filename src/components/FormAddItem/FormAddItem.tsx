@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react";
+import { FC, useState } from "react";
 import { SafeAreaView } from "react-native";
 import { PlusIcon } from "lucide-react-native";
 

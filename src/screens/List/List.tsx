@@ -10,6 +10,7 @@ import {
   Text,
   Divider,
   Heading,
+  ToDoItem,
   IconButton,
   FormAddItem,
 } from "../../components";
@@ -52,7 +53,9 @@ const List: FC<Props> = ({ list, refetch }) => {
               <Text>All clear</Text>
             ) : (
               list.map((todo) => {
-                return <Text key={todo.id}>{todo.task}</Text>;
+                return (
+                  <ToDoItem key={todo.id} todo={todo} onComplete={refetch} />
+                );
               })
             )}
           </Box>
